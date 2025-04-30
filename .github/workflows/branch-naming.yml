@@ -1,0 +1,56 @@
+name: Branch Naming Convention
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch naming convention
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branchName = context.payload.pull_request.head.ref;
+            const targetBranch = context.payload.pull_request.base.ref;
+            
+            // Branch naming patterns
+            const patterns = {
+              'feature': /^feature\/[a-z0-9-]+$/,
+              'bugfix': /^bugfix\/[a-z0-9-]+$/,
+              'hotfix': /^hotfix\/[a-z0-9-]+$/,
+              'release': /^release\/[0-9]+\.[0-9]+\.[0-9]+$/
+            };
+            
+            // Allowed target branches for each pattern
+            const allowedTargets = {
+              'feature': ['dev'],
+              'bugfix': ['dev', 'stage'],
+              'hotfix': ['main', 'prod'],
+              'release': ['stage', 'prod']
+            };
+            
+            // Check if branch name matches any pattern
+            let matchedPattern = null;
+            for (const [type, pattern] of Object.entries(patterns)) {
+              if (pattern.test(branchName)) {
+                matchedPattern = type;
+                break;
+              }
+            }
+            
+            if (!matchedPattern) {
+              core.setFailed(`Branch name "${branchName}" does not follow the naming convention. 
+                Expected formats:
+                - feature/your-feature-name
+                - bugfix/your-bugfix-name
+                - hotfix/your-hotfix-name
+                - release/1.0.0`);
+            }
+            
+            // Check if target branch is allowed
+            if (!allowedTargets[matchedPattern].includes(targetBranch)) {
+              core.setFailed(`${matchedPattern} branches can only be merged into: ${allowedTargets[matchedPattern].join(', ')}`);
+            } 

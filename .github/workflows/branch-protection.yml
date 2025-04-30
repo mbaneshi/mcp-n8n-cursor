@@ -1,0 +1,44 @@
+name: Branch Protection
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - stage
+      - prod
+
+jobs:
+  enforce-branch-protection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Enforce branch protection
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+            const protectedBranches = ['main', 'dev', 'stage', 'prod'];
+            
+            if (protectedBranches.includes(branch)) {
+              await github.rest.repos.updateBranchProtection({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                branch: branch,
+                required_status_checks: {
+                  strict: true,
+                  contexts: ['lint', 'test', 'build']
+                },
+                enforce_admins: true,
+                required_pull_request_reviews: {
+                  dismissal_restrictions: {},
+                  dismiss_stale_reviews: true,
+                  require_code_owner_reviews: true,
+                  required_approving_review_count: 2
+                },
+                restrictions: null
+              });
+            } 
