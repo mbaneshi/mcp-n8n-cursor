@@ -1,0 +1,53 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Git Workflow Standards
+
+## Branch Naming
+- Feature branches: `feature/descriptive-name`
+- Bug fixes: `bugfix/issue-description`
+- Documentation: `docs/topic`
+- Chores: `chore/task-description`
+- Hotfixes: `hotfix/issue-description`
+
+## Commit Messages
+- Use imperative mood ("Add feature" not "Added feature")
+- First line: 50 chars or less
+- Body: Wrap at 72 chars
+- Format:
+  ```
+  type(scope): subject
+
+  body
+
+  footer
+  ```
+- Types: feat, fix, docs, style, refactor, test, chore
+- Scope: component or module affected
+- Subject: concise description
+- Body: motivation and changes
+- Footer: breaking changes, issue references
+
+## Pull Requests
+- Create from feature branches
+- Use PR template
+- Require at least one review
+- Squash commits before merging
+- Update CHANGELOG.md
+- Link related issues
+
+## Versioning
+- Follow semantic versioning (MAJOR.MINOR.PATCH)
+- Tag releases with version numbers
+- Update version in all relevant files
+- Document breaking changes
+
+## Best Practices
+- Pull before pushing
+- Keep commits atomic and focused
+- Write meaningful commit messages
+- Review changes before committing
+- Use .gitignore appropriately
+- Never commit secrets or sensitive data

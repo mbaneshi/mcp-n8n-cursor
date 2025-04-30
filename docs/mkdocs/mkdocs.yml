@@ -1,0 +1,72 @@
+site_name: MCP N8N Cursor Project
+site_description: Scalable AI Agent Platform for Small Businesses
+site_author: Your Name
+repo_url: https://github.com/yourusername/mcp-n8n-cursor
+repo_name: mcp-n8n-cursor
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+    - search.share
+    - search.suggest
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.arithmatex
+  - pymdownx.emoji
+  - admonition
+  - footnotes
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - git-revision-date-localized
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          selection:
+            docstring_style: google
+          rendering:
+            show_source: true
+            show_root_heading: true
+
+nav:
+  - Home: index.md
+  - Architecture:
+    - Overview: architecture/overview.md
+    - Components: architecture/components.md
+    - Data Flow: architecture/data-flow.md
+  - Development:
+    - Setup: development/setup.md
+    - Workflow: development/workflow.md
+    - Testing: development/testing.md
+  - User Guide:
+    - Getting Started: user-guide/getting-started.md
+    - Features: user-guide/features.md
+    - API Reference: user-guide/api-reference.md
+  - Maintenance:
+    - Monitoring: maintenance/monitoring.md
+    - Backup: maintenance/backup.md
+    - Security: maintenance/security.md 

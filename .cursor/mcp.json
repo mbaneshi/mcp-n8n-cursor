@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "server-name": {
+      "url": "http://localhost:5678/mcp/217f96b5-fe72-4ffa-9f80-d6240a69282e/sse"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Documentation Standards
+
+## Structure
+- All docs in `docs/` directory
+- Dual documentation systems:
+  - MkDocs: `docs/mkdocs/`
+  - Docusaurus: `docs/docusaurus/`
+- Architecture decisions: `docs/ADRs/`
+- Discussion logs: `docs/discussions/`
+
+## Markdown Standards
+- Use ATX-style headers (#)
+- Wrap at 100 characters
+- Use relative links
+- Include table of contents for long docs
+- Use code blocks with language specification
+- Include examples where helpful
+
+## Documentation Types
+1. **Architecture Documentation**
+   - System overview
+   - Component diagrams
+   - Data flow
+   - API specifications
+   - Security considerations
+
+2. **Development Documentation**
+   - Setup instructions
+   - Development workflow
+   - Testing procedures
+   - Deployment process
+   - Troubleshooting guides
+
+3. **User Documentation**
+   - Getting started
+   - Feature guides
+   - API reference
+   - Best practices
+   - FAQ
+
+4. **Maintenance Documentation**
+   - Monitoring
+   - Backup procedures
+   - Update procedures
+   - Security protocols
+
+## ADR (Architecture Decision Records)
+- Format: `docs/ADRs/XXXX-title.md`
+- Include:
+  - Status (Proposed, Accepted, Deprecated, Superseded)
+  - Context
+  - Decision
+  - Consequences
+  - References
+
+## Discussion Logs
+- Format: `docs/discussions/YYYY-MM-DD-topic.md`
+- Include:
+  - Participants
+  - Key decisions
+  - Action items
+  - Follow-up tasks
+
+## Best Practices
+- Keep documentation up-to-date
+- Use clear, concise language
+- Include diagrams where helpful
+- Cross-reference related docs
+- Version documentation with code
+- Regular documentation reviews
