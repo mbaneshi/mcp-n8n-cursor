@@ -8,9 +8,17 @@ on:
       - 'docs/**'
       - '.github/workflows/deploy-docs.yml'
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   deploy-mkdocs:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -26,6 +34,9 @@ jobs:
 
   deploy-docusaurus:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
