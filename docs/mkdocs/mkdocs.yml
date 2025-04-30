@@ -1,7 +1,7 @@
 site_name: MCP N8N Cursor Project
 site_description: Scalable AI Agent Platform for Small Businesses
 site_author: Your Name
-repo_url: https://github.com/yourusername/mcp-n8n-cursor
+repo_url: https://github.com/mbaneshi/mcp-n8n-cursor
 repo_name: mcp-n8n-cursor
 
 theme:
